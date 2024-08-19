@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理テスト</title>
+</head>
+<body>
+    <h1>簡単な心理テスト</h1>
+    <p>以下の質問に答えて、結果を見てみよう！</p>
+    
+    <!-- 質問1 -->
+    <p>1. あなたはどちらが好きですか？</p>
+    <input type="radio" name="question1" value="A"> 山 <br>
+    <input type="radio" name="question1" value="B"> 海 <br>
+    
+    <!-- 質問2 -->
+    <p>2. 好きな動物はどちらですか？</p>
+    <input type="radio" name="question2" value="A"> 犬 <br>
+    <input type="radio" name="question2" value="B"> 猫 <br>
+    
+    <!-- 質問3 -->
+    <p>3. 好きな季節はどれですか？</p>
+    <input type="radio" name="question3" value="A"> 春 <br>
+    <input type="radio" name="question3" value="B"> 冬 <br>
+    
+    <button onclick="showResult()">結果を見る</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function showResult() {
+            // 質問の回答を取得
+            var q1 = document.querySelector('input[name="question1"]:checked');
+            var q2 = document.querySelector('input[name="question2"]:checked');
+            var q3 = document.querySelector('input[name="question3"]:checked');
+
+            // 回答がすべて選ばれているかチェック
+            if (!q1 || !q2 || !q3) {
+                document.getElementById('result').innerText = "すべての質問に答えてください。";
+                return;
+            }
+
+            // 結果を計算
+            var scoreA = 0;
+            var scoreB = 0;
+
+            if (q1.value === 'A') scoreA++;
+            if (q1.value === 'B') scoreB++;
+            if (q2.value === 'A') scoreA++;
+            if (q2.value === 'B') scoreB++;
+            if (q3.value === 'A') scoreA++;
+            if (q3.value === 'B') scoreB++;
+
+            // 結果を表示
+            if (scoreA > scoreB) {
+                document.getElementById('result').innerText = "あなたは冒険心が強く、自然を愛するタイプです！";
+            } else {
+                document.getElementById('result').innerText = "あなたは落ち着いた性格で、室内での活動を好むタイプです！";
+            }
+        }
+    </script>
+</body>
+</html>
